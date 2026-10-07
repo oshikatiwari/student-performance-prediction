@@ -114,32 +114,3 @@ if predict_button and pipeline is not None:
     )
 else:
     st.info("Enter values above, then click **Predict!**")
-
-# ---------------------------------------------------------
-# Optional Batch Prediction (Clean Accordion)
-# ---------------------------------------------------------
-st.divider()
-with st.expander("📁 Batch Prediction (Upload CSV)"):
-    st.write("Upload a student CSV file to generate predictions matching the required `ID,FinalExamScore` format.")
-    uploaded_file = st.file_uploader("Choose CSV file", type=["csv"], label_visibility="collapsed")
-
-    if uploaded_file is not None and pipeline is not None:
-        batch_df = pd.read_csv(uploaded_file)
-        ids = batch_df["ID"] if "ID" in batch_df.columns else pd.Series(range(100001, 100001 + len(batch_df)), name="ID")
-        preds = np.clip(pipeline.predict(batch_df), 0.0, 100.0)
-
-        result_df = pd.DataFrame({
-            "ID": ids,
-            "FinalExamScore": np.round(preds, 2)
-        })
-
-        st.dataframe(result_df.head(10))
-
-        csv_bytes = result_df.to_csv(index=False).encode("utf-8")
-        st.download_button(
-            label="📥 Download submission.csv",
-            data=csv_bytes,
-            file_name="submission.csv",
-            mime="text/csv",
-            type="primary"
-        )
