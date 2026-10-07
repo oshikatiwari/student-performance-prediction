@@ -1,0 +1,42 @@
+{
+  "Mean Baseline": {
+    "rmse_mean": 13.989,
+    "rmse_std": 1.194,
+    "mae_mean": 11.126,
+    "mae_std": 0.937,
+    "r2_mean": -0.01,
+    "r2_std": 0.01
+  },
+  "Ridge Regression": {
+    "rmse_mean": 7.945,
+    "rmse_std": 0.621,
+    "mae_mean": 5.96,
+    "mae_std": 0.352,
+    "r2_mean": 0.671,
+    "r2_std": 0.044
+  },
+  "Random Forest": {
+    "rmse_mean": 7.429,
+    "rmse_std": 0.806,
+    "mae_mean": 5.714,
+    "mae_std": 0.55,
+    "r2_mean": 0.713,
+    "r2_std": 0.048
+  },
+  "Gradient Boosting": {
+    "rmse_mean": 6.748,
+    "rmse_std": 0.494,
+    "mae_mean": 5.276,
+    "mae_std": 0.376,
+    "r2_mean": 0.764,
+    "r2_std": 0.021
+  },
+  "Hist Gradient Boosting": {
+    "rmse_mean": 7.168,
+    "rmse_std": 0.739,
+    "mae_mean": 5.563,
+    "mae_std": 0.504,
+    "r2_mean": 0.734,
+    "r2_std": 0.025
+  }
+}
