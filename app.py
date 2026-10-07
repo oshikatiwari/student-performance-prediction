@@ -44,7 +44,7 @@ st.write(
     "Predict student final exam scores and academic standing using verified pre-exam indicators."
 )
 
-tab1, tab2, tab3 = st.tabs(["⚡ Single Prediction", "📁 Batch CSV Scoring", "📊 Model Diagnostics"])
+tab1, tab2 = st.tabs(["⚡ Single Prediction", "📁 Batch CSV Scoring"])
 
 # ---------------------------------------------------------
 # Tab 1: Single Prediction
@@ -156,29 +156,3 @@ with tab2:
                 mime="text/csv",
                 type="primary"
             )
-
-
-# ---------------------------------------------------------
-# Tab 3: Model Diagnostics & Architecture
-# ---------------------------------------------------------
-with tab3:
-    st.subheader("Architecture & Model Card")
-    st.markdown("""
-    - **Model Family**: Tuned Gradient Boosting Regressor (150 estimators, learning rate 0.12, depth 2)
-    - **Validation Strategy**: 5-Fold Cross-Validation (Seed 42, Shuffle True)
-    - **Benchmark Metrics**: **CV RMSE: 6.675 ± 0.494** | **CV MAE: 5.276 ± 0.376** | **CV R²: 0.764 ± 0.021**
-    - **Zero-Leakage Assurance**: `PostExamConfidence` strictly excluded; all preprocessing encapsulated in Scikit-Learn `Pipeline`
-    - **Intended Purpose**: Early academic advising and proactive intervention for at-risk undergraduate students
-    """)
-
-    st.divider()
-    st.subheader("Diagnostic Visualizations")
-    col_a, col_b = st.columns(2)
-
-    with col_a:
-        if RESIDUAL_PLOT_PATH.exists():
-            st.image(str(RESIDUAL_PLOT_PATH), caption="Out-of-Fold Residual Diagnostics", use_container_width=True)
-
-    with col_b:
-        if IMPORTANCE_PLOT_PATH.exists():
-            st.image(str(IMPORTANCE_PLOT_PATH), caption="Permutation Feature Importance (Decrease in RMSE)", use_container_width=True)
